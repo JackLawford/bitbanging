@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+C:/Users/Jack/bitbanging/build/CMakeFiles/bootloader
+C:/Users/Jack/bitbanging/build/CMakeFiles/bootloader.rule
+C:/Users/Jack/bitbanging/build/CMakeFiles/bootloader-complete.rule
+C:/Users/Jack/bitbanging/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+C:/Users/Jack/bitbanging/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+C:/Users/Jack/bitbanging/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+C:/Users/Jack/bitbanging/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+C:/Users/Jack/bitbanging/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+C:/Users/Jack/bitbanging/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+C:/Users/Jack/bitbanging/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

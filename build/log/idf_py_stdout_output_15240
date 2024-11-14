@@ -1,0 +1,19 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D C:\Users\Jack\bitbanging\build\bootloader\esp-idf\esptool_py && X:\Espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.3.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 C:/Users/Jack/bitbanging/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6880 bytes. 0x780 bytes (7%) free.
+[2/7] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/blink_example_main.c.obj
+C:/Users/Jack/bitbanging/main/blink_example_main.c: In function 'app_main':
+C:/Users/Jack/bitbanging/main/blink_example_main.c:48:13: warning: unused variable 'led_colors' [-Wunused-variable]
+   48 |     uint8_t led_colors[] = {0x00, 0xFF, 0x00};  // One green LED
+      |             ^~~~~~~~~~
+[3/7] Linking C static library esp-idf\main\libmain.a
+[4/7] Generating ld/sections.ld
+[5/7] Linking CXX executable bitbanging.elf
+[6/7] Generating binary image from built executable
+esptool.py v4.8.1
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated C:/Users/Jack/bitbanging/build/bitbanging.bin
+[7/7] cmd.exe /C "cd /D C:\Users\Jack\bitbanging\build\esp-idf\esptool_py && X:\Espressif\python_env\idf5.3_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.3.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/Jack/bitbanging/build/partition_table/partition-table.bin C:/Users/Jack/bitbanging/build/bitbanging.bin"
+bitbanging.bin binary size 0x2cb70 bytes. Smallest app partition is 0x100000 bytes. 0xd3490 bytes (83%) free.
