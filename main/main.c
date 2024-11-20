@@ -21,4 +21,4 @@ void app_main(void) {
     while (1) {
         vTaskDelay(portMAX_DELAY);  // Keep the main task alive
     }
-}
+} 
