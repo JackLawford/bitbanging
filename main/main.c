@@ -16,6 +16,8 @@ void app_main(void) {
 
     setRainbow(84, 1);
 
+    //fillAnimation(10, 0x00FF00);
+
     while (1) {
         vTaskDelay(portMAX_DELAY);  // Keep the main task alive
     }
