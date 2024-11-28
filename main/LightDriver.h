@@ -49,3 +49,18 @@ void setSweeping(uint32_t color, uint32_t num_leds, uint32_t delay);
  * @param delay The delay between each sweep
  */
 void setRainbow(uint32_t num_leds, uint32_t delay);
+
+/**
+ * @brief Fill the LEDs from bottom to top with a color
+ * 
+ * @param delay The delay between each LED increase
+ * @param color The color to fill the LEDs with
+ */
+void fillAnimation(uint32_t delay, uint32_t color);
+
+/**
+ * @brief Animate a rainbow pattern vertically
+ * 
+ * @param delay The delay between each sweep
+ */
+void vertRainbowAnimation(uint32_t delay);

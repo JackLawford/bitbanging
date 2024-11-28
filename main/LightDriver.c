@@ -203,75 +203,180 @@ void fillAnimation(uint32_t delay, uint32_t color) {
     int layerThreeEdges[] = {5, 8, 17, 20, 29};
     int layerFourEdges[] = {6, 7, 18, 19, 30};
 
+    memset(currFrame.leds, 0, 420 * sizeof(led24));
+
     while (1) {
         switch (i) {
             case 0:
                 for (j = 0; j < 14; j++) {
                     currFrame.leds[((layerZeroEdges[0] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerZeroEdges[1] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerZeroEdges[1] * 14) - 1) - j].val = color;
                     currFrame.leds[((layerZeroEdges[2] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerZeroEdges[3] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerZeroEdges[3] * 14) - 1) - j].val = color;
                     currFrame.leds[((layerZeroEdges[4] * 14) - 14) + j].val = color;
+                    setFrame(currFrame);
+                    vTaskDelay(pdMS_TO_TICKS(delay));
                 }
-                setFrame(currFrame);
+                i++;
+                break;
+            case 1:
+                for (j = 0; j < 14; j++) {
+                    currFrame.leds[((layerOneEdges[0] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerOneEdges[1] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerOneEdges[2] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerOneEdges[3] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerOneEdges[4] * 14) - 14) + j].val = color;
+                    setFrame(currFrame);
+                    vTaskDelay(pdMS_TO_TICKS(delay));
+                }
+                i++;
+                break;
+            case 2:
+                for (j = 0; j < 14; j++) {
+                    currFrame.leds[((layerTwoEdges[0] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerTwoEdges[1] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerTwoEdges[2] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerTwoEdges[3] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerTwoEdges[4] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerTwoEdges[5] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerTwoEdges[6] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerTwoEdges[7] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerTwoEdges[8] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerTwoEdges[9] * 14) - 1) - j].val = color;
+                    setFrame(currFrame);
+                    vTaskDelay(pdMS_TO_TICKS(delay));
+                }
+                i++;
+                break;
+            case 3:
+                for (j = 0; j < 14; j++) {
+                    currFrame.leds[((layerThreeEdges[0] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerThreeEdges[1] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerThreeEdges[2] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerThreeEdges[3] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerThreeEdges[4] * 14) - 14) + j].val = color;
+                    setFrame(currFrame);
+                    vTaskDelay(pdMS_TO_TICKS(delay));
+                }
+                i++;
+                break;
+            case 4:
+                for (j = 0; j < 14; j++) {
+                    currFrame.leds[((layerFourEdges[0] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerFourEdges[1] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerFourEdges[2] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerFourEdges[3] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerFourEdges[4] * 14) - 1) - j].val = color;
+                    setFrame(currFrame);
+                    vTaskDelay(pdMS_TO_TICKS(delay));
+                }
+
+            default:
+                ;
+        }
+    }
+}
+
+void vertRainbowAnimation(uint32_t delay) {
+    Frame currFrame = {
+        .num_leds = 420,
+        .leds = (led24 *)malloc(420 * sizeof(led24))
+    };
+
+    int i = 0;
+    int j = 0;
+    int layerZeroEdges[] = {1, 12, 13, 24, 25};
+    int layerOneEdges[] = {2, 11, 14, 23, 26};
+    int layerTwoEdges[] = {3, 4, 9, 10, 15, 16, 21, 22, 27, 28};
+    int layerThreeEdges[] = {5, 8, 17, 20, 29};
+    int layerFourEdges[] = {6, 7, 18, 19, 30};
+
+    int colorCounter = 0;
+
+    while (1) {
+        switch (i) {
+            case 0:
+                for (j = 0; j < 14; j++) {
+                    float hue = (float)(colorCounter % 71) / 71.0; // Cycle through 0 to 360 degrees
+                    int color = (uint32_t)HSVtoRGB(hue, 1.0, 1.0);
+                    currFrame.leds[((layerZeroEdges[0] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerZeroEdges[1] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerZeroEdges[2] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerZeroEdges[3] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerZeroEdges[4] * 14) - 14) + j].val = color;
+                    colorCounter++;
+                }
+                setFrame(currFrame); // Batch update
                 vTaskDelay(pdMS_TO_TICKS(delay));
                 i++;
                 break;
             case 1:
-                for (j = 0; j < 12; j++) {
+                for (j = 0; j < 14; j++) {
+                    float hue = (float)(colorCounter % 71) / 71.0; // Cycle through 0 to 360 degrees
+                    int color = (uint32_t)HSVtoRGB(hue, 1.0, 1.0);
                     currFrame.leds[((layerOneEdges[0] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerOneEdges[1] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerOneEdges[1] * 14) - 1) - j].val = color;
                     currFrame.leds[((layerOneEdges[2] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerOneEdges[3] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerOneEdges[3] * 14) - 1) - j].val = color;
                     currFrame.leds[((layerOneEdges[4] * 14) - 14) + j].val = color;
+                    colorCounter++;
                 }
-                setFrame(currFrame);
+                setFrame(currFrame); // Batch update
                 vTaskDelay(pdMS_TO_TICKS(delay));
                 i++;
                 break;
             case 2:
-                for (j = 0; j < 18; j++) {
+                for (j = 0; j < 14; j++) {
+                    float hue = (float)(colorCounter % 71) / 71.0; // Cycle through 0 to 360 degrees
+                    int color = (uint32_t)HSVtoRGB(hue, 1.0, 1.0);
                     currFrame.leds[((layerTwoEdges[0] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerTwoEdges[1] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerTwoEdges[2] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerTwoEdges[3] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerTwoEdges[1] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerTwoEdges[2] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerTwoEdges[3] * 14) - 1) - j].val = color;
                     currFrame.leds[((layerTwoEdges[4] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerTwoEdges[5] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerTwoEdges[6] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerTwoEdges[7] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerTwoEdges[5] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerTwoEdges[6] * 14) - 1) - j].val = color;
+                    currFrame.leds[((layerTwoEdges[7] * 14) - 1) - j].val = color;
                     currFrame.leds[((layerTwoEdges[8] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerTwoEdges[9] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerTwoEdges[9] * 14) - 1) - j].val = color;
+                    colorCounter++;
                 }
-                setFrame(currFrame);
+                setFrame(currFrame); // Batch update
                 vTaskDelay(pdMS_TO_TICKS(delay));
                 i++;
                 break;
             case 3:
-                for (j = 0; j < 10; j++) {
+                for (j = 0; j < 14; j++) {
+                    float hue = (float)(colorCounter % 71) / 71.0; // Cycle through 0 to 360 degrees
+                    int color = (uint32_t)HSVtoRGB(hue, 1.0, 1.0);
                     currFrame.leds[((layerThreeEdges[0] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerThreeEdges[1] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerThreeEdges[1] * 14) - 1) - j].val = color;
                     currFrame.leds[((layerThreeEdges[2] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerThreeEdges[3] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerThreeEdges[3] * 14) - 1) - j].val = color;
                     currFrame.leds[((layerThreeEdges[4] * 14) - 14) + j].val = color;
+                    colorCounter++;
                 }
-                setFrame(currFrame);
+                setFrame(currFrame); // Batch update
                 vTaskDelay(pdMS_TO_TICKS(delay));
                 i++;
                 break;
             case 4:
-                for (j = 0; j < 10; j++) {
-                    currFrame.leds[((layerFourEdges[0] * 14) - 14) + j].val = color;
+                for (j = 0; j < 14; j++) {
+                    float hue = (float)(colorCounter % 71) / 71.0; // Cycle through 0 to 360 degrees
+                    int color = (uint32_t)HSVtoRGB(hue, 1.0, 1.0);
+                    currFrame.leds[((layerFourEdges[0] * 14) - 1) - j].val = color;
                     currFrame.leds[((layerFourEdges[1] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerFourEdges[2] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerFourEdges[2] * 14) - 1) - j].val = color;
                     currFrame.leds[((layerFourEdges[3] * 14) - 14) + j].val = color;
-                    currFrame.leds[((layerFourEdges[4] * 14) - 14) + j].val = color;
+                    currFrame.leds[((layerFourEdges[4] * 14) - 1) - j].val = color;
+                    colorCounter++;
                 }
-                setFrame(currFrame);
+                setFrame(currFrame); // Batch update
                 vTaskDelay(pdMS_TO_TICKS(delay));
                 i = 0;
-                break;
             default:
-                break;
+                ;
         }
     }
 }
+

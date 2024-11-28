@@ -8,17 +8,18 @@
 #include "sdkconfig.h"
 #include <string.h>
 #include "LightDriver.h"
+#include "ColorHelpers.h"
 
 #define LED_PIN 27
 
 void app_main(void) {
     configure_rmt(LED_PIN);
 
-    setRainbow(84, 1);
+    //setRainbow(420, 1);
 
-    //fillAnimation(10, 0x00FF00);
+    fillAnimation(50, 0x0000FF);
 
     while (1) {
         vTaskDelay(portMAX_DELAY);  // Keep the main task alive
     }
-} 
+}      
